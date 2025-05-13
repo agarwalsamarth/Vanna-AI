@@ -1,0 +1,42 @@
+Question_SQL_Pairs = [
+    {
+        "question": "What is the population of India?",
+        "sql": "SELECT Population FROM country WHERE Name = 'India';"
+    },
+    {
+        "question": "List all cities in Australia.",
+        "sql": "SELECT Name FROM city WHERE CountryCode = (SELECT Code FROM country WHERE Name = 'Australia');"
+    },
+    {
+        "question": "Which countries are in Asia?",
+        "sql": "SELECT Name FROM country WHERE Continent = 'Asia';"
+    },
+    {
+        "question": "What is the total population of all cities in the Afghanistan?",
+        "sql": "SELECT SUM(Population) FROM city WHERE CountryCode = (SELECT Code FROM country WHERE Name = 'Afghanistan');"
+    },
+    {
+        "question": "List official languages spoken in Germany.",
+        "sql": "SELECT Language FROM language WHERE CountryCode = (SELECT Code FROM country WHERE Name = 'Germany') AND IsOfficial = 'T';"
+    },
+    {
+        "question": "Which country has the highest GNP?",
+        "sql": "SELECT Name FROM country WHERE GNP = (SELECT MAX(GNP) FROM country);"
+    },
+    {
+        "question": "List the top 5 most populous countries.",
+        "sql": "SELECT Name, Population FROM country ORDER BY Population DESC LIMIT 5;"
+    },
+    {
+        "question": "What is the average life expectancy by continent?",
+        "sql": "SELECT Continent, AVG(LifeExpectancy) as AvgLife FROM country WHERE LifeExpectancy IS NOT NULL GROUP BY Continent;"
+    },
+    {
+        "question": "How many cities are there in each country?",
+        "sql": "SELECT CountryCode, COUNT(*) as CityCount FROM city GROUP BY CountryCode;"
+    },
+    {
+        "question": "What are the top 3 most spoken languages by percentage in India?",
+        "sql": "SELECT Language, Percentage FROM Language WHERE CountryCode = (SELECT Code FROM country WHERE Name = 'India') ORDER BY Percentage DESC LIMIT 3;"
+    }
+]
